@@ -1,7 +1,6 @@
-import pprint
 import requests
 from bs4 import BeautifulSoup
-from .dto import ItProgerDTO
+from .dto import ContentDTO
 
 MAIN_URL = 'https://itproger.com/'
 SUBURL = 'search/python'
@@ -36,7 +35,7 @@ def main_it_proger():
         tmp['link'] = MAIN_URL + link.get('href')
 
         result.append(tmp)
-    return ItProgerDTO(result)
+    return ContentDTO(result)
 
 
 if __name__ == '__main__':
