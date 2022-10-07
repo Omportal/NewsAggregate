@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from .dto import HabrDTO
+from .dto import ContentDTO
 
 
 MAIN_URL = 'https://habr.com/ru'
@@ -46,7 +46,7 @@ def main_habr():
         tmp['link'] = link
 
         result.append(tmp)
-    return HabrDTO(result)
+    return ContentDTO(result)
 
 
 if __name__ == '__main__':

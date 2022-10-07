@@ -1,7 +1,6 @@
 import requests
-import pprint
 from bs4 import BeautifulSoup
-from .dto import TprogerDTO
+from .dto import ContentDTO
 
 
 MAIN_URL = 'https://tproger.ru/'
@@ -41,7 +40,7 @@ def main():
         tmp['link'] = link
 
         result.append(tmp)
-    return TprogerDTO(result)
+    return ContentDTO(result)
 
 
 if __name__ == '__main__':
