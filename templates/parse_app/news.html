@@ -1,0 +1,7 @@
+{% for new in content %}
+<a href={{ new.link }}><h3>{{ new.title }}</h3></a>
+{%if new.img_link %}
+<img src={{ new.img_link }} style='width:50px' alt=''>
+{% endif %}
+<h4>{{ new.description }}</h4>
+{% endfor %}
