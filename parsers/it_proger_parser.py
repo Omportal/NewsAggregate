@@ -1,9 +1,7 @@
-'https://itproger.com/search/python'
-
 import pprint
 import requests
 from bs4 import BeautifulSoup
-
+from .dto import ItProgerDTO
 
 MAIN_URL = 'https://itproger.com/'
 SUBURL = 'search/python'
@@ -21,21 +19,25 @@ response = requests.get(url=MAIN_URL + SUBURL, headers=HEADERS)
 soup = BeautifulSoup(response.text, 'lxml')
 
 
-result = []
-all_content = soup.find_all(
-    'div', attrs={'class': 'article'})
-for content in all_content:
-    tmp = {}
+def main_it_proger():
+    result = []
+    all_content = soup.find_all(
+        'div', attrs={'class': 'article'})
+    for content in all_content:
+        tmp = {}
 
-    link = content.find('a')
-    title = link
-    img = content.find('img')
-    description = img.findNext('span').findNext('span')
-    tmp['img_link'] = MAIN_URL + img.get('src')
-    tmp['title'] = title.text.strip()
-    tmp['description'] = description.text.strip()
-    tmp['link'] = MAIN_URL + link.get('href')
+        link = content.find('a')
+        title = link
+        img = content.find('img')
+        description = img.findNext('span').findNext('span')
+        tmp['img_link'] = MAIN_URL + img.get('src')
+        tmp['title'] = title.text.strip()
+        tmp['description'] = description.text.strip()
+        tmp['link'] = MAIN_URL + link.get('href')
 
-    result.append(tmp)
+        result.append(tmp)
+    return ItProgerDTO(result)
 
-pprint.pprint(result)
+
+if __name__ == '__main__':
+    main_it_proger()
