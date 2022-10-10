@@ -6,6 +6,8 @@ class ParseData(models.Model):
     description = models.CharField(max_length=500, verbose_name='Описание')
     link = models.URLField(verbose_name='Ссылка')
     img_link = models.URLField(verbose_name='Изображение', null=True)
+    site_name = models.CharField(
+        max_length=30, null=True, blank=True, verbose_name="Имя сайта")
 
     class Meta:
 

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from .dto import ContentDTO
 
 MAIN_URL = 'https://itproger.com/'
-SUBURL = 'search/python'
+SUBURL = 'news'
 ATTRS = {
     'q': 'python',
     'target_type': 'posts',
@@ -33,7 +33,7 @@ def main_it_proger():
         tmp['title'] = title.text.strip()
         tmp['description'] = description.text.strip()
         tmp['link'] = MAIN_URL + link.get('href')
-
+        tmp['site_name'] = 'it_proger'
         result.append(tmp)
     return ContentDTO(result)
 

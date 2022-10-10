@@ -13,7 +13,7 @@ ATTRS = {
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"}
 
-response = requests.get(url=MAIN_URL + SUBURL, headers=HEADERS)
+response = requests.get(url=MAIN_URL, headers=HEADERS)
 
 
 soup = BeautifulSoup(response.text, 'lxml')
@@ -38,6 +38,7 @@ def main():
         tmp['title'] = title.text.strip()
         tmp['description'] = description.text.strip()
         tmp['link'] = link
+        tmp['site_name'] = 'tproger'
 
         result.append(tmp)
     return ContentDTO(result)

@@ -13,5 +13,33 @@ class NewsView(View):
 
         # TODO добавить этот метод в celery
         ParserAppRepository.create_all_parsers_data()
+        return render(request, self.template_name, context={'content': self.content})
+
+
+class TprogerView(View):
+    template_name = 'parse_app/tproger.html'
+    content = ParseData.objects.filter(
+        site_name='tproger').order_by('id')
+  
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name, context={'content': self.content})
+
+
+class HabrView(View):
+    template_name = 'parse_app/habr.html'
+    content = ParseData.objects.filter(site_name='habr').order_by('id')
+   
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name, context={'content': self.content})
+
+
+class ItprogerView(View):
+    template_name = 'parse_app/itproger.html'
+    content = ParseData.objects.filter(
+        site_name='it_proger').order_by('id')
+  
+    def get(self, request, *args, **kwargs):
 
         return render(request, self.template_name, context={'content': self.content})
